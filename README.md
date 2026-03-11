@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD Institutions | Global Master Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d; --accent: #3182ce; --bg: #f7fafc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #2d3748; }
+
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 8%; background: #fff; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); letter-spacing: 1px; }
+        .logo span { color: var(--accent); }
+
+        /* Hero */
+        .hero {
+            height: 55vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1200');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+
+        /* College Selector */
+        .selector-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; padding: 0 8%; margin-top: -50px;
+        }
+        .college-card {
+            background: #fff; padding: 35px; border-radius: 15px; text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); cursor: pointer; transition: 0.4s;
+            border-top: 6px solid var(--accent);
+        }
+        .college-card:hover { transform: translateY(-12px); border-top-color: #2c5282; }
+
+        /* 20-Image Gallery */
+        .gallery-section { padding: 80px 8%; }
+        .gallery-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 700; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;
+        }
+        .img-box {
+            position: relative; height: 260px; border-radius: 12px; overflow: hidden;
+            background: #cbd5e0; /* Gray placeholder while loading */
+        }
+        .img-box img {
+            width: 100%; height: 100%; object-fit: cover; transition: 0.6s;
+        }
+        .img-box:hover img { transform: scale(1.15); }
+        .label {
+            position: absolute; bottom: 0; width: 100%; padding: 12px;
+            background: rgba(26, 54, 93, 0.9); color: #fff; font-size: 0.9rem; text-align: center;
+            font-weight: 600;
+        }
+
+        /* Form */
+        .admission-area { padding: 80px 8%; background: #ebf4ff; display: none; }
+        .form-card {
+            max-width: 850px; margin: 0 auto; background: #fff; padding: 45px;
+            border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        .form-title { margin-bottom: 30px; text-align: center; color: var(--primary); }
+        input, select, textarea {
+            width: 100%; padding: 14px; margin-bottom: 18px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit;
+        }
+        .btn-submit {
+            width: 100%; padding: 18px; background: var(--primary); color: #fff;
+            border: none; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
+        }
+        .btn-submit:hover { background: #2c5282; }
+
+        footer { background: var(--primary); color: #fff; padding: 50px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">AD <span>INSTITUTIONS</span></div>
+        <div style="font-weight: 600; color: #718096;">Global Excellence</div>
+    </nav>
+
+    <header class="hero">
+        <div>
+            <h1 style="font-size: 3rem; margin-bottom: 15px;">A Legacy of Learning</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">20+ World-Class Facilities across 3 Specialized Colleges</p>
+        </div>
+    </header>
+
+    <section class="selector-grid">
+        <div class="college-card" onclick="startApply('Technology', '#3182ce')">
+            <h2>AD Technology</h2>
+            <p>Next-Gen Engineering</p>
+        </div>
+        <div class="college-card" onclick="startApply('Arts & Science', '#805ad5')">
+            <h2>AD Arts & Science</h2>
+            <p>Creative Innovation</p>
+        </div>
+        <div class="college-card" onclick="startApply('PhD School', '#38a169')">
+            <h2>AD Research</h2>
+            <p>Post-Graduate Excellence</p>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2 class="gallery-title">Explore Our Facilities</h2>
+        <div class="gallery-grid">
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/271815/pexels-photo-271815.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Auditorium">
+                <div class="label">Grand Auditorium</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/256417/pexels-photo-256417.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Library">
+                <div class="label">Central Library</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Computer Lab">
+                <div class="label">IT & AI Lab</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/159515/football-american-football-runner-player-159515.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Playground">
+                <div class="label">Sports Playground</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chemistry">
+                <div class="label">Chemistry Research Lab</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/60582/newton-s-cradle-balls-sphere-action-60582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Physics">
+                <div class="label">Physics Lab</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Music">
+                <div class="label">Music & Sound Studio</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/1701202/pexels-photo-1701202.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dance">
+                <div class="label">Dance & Performing Arts</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cafeteria">
+                <div class="label">Modern Cafeteria</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/1263349/pexels-photo-1263349.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pool">
+                <div class="label">Olympic Swimming Pool</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gym">
+                <div class="label">Fitness Center</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Medical">
+                <div class="label">Health & Medical Center</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Seminar">
+                <div class="label">Seminar & Conference Hall</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Art">
+                <div class="label">Fine Arts Studio</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Robotics">
+                <div class="label">Robotics & Drone Lab</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Yoga">
+                <div class="label">Yoga & Wellness Center</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Workshop">
+                <div class="label">Mechanical Workshop</div>
+            </div>
+                       <div class="img-box">
+                <img src="https://images.pexels.com/photos/4348440/pexels-photo-4348440.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Theater">
+                <div class="label">Open Air Theater</div>
+            </div>
+            <div class="img-box">
+                <img src="https://images.pexels.com/photos/1015568/pexels-photo-1015568.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lounge">
+                <div class="label">Creative Student Lounge</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="admission-area" id="admission">
+        <div class="form-card">
+            <h2 id="formTitle" class="form-title">Admission Portal</h2>
+            <form id="masterForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="text" placeholder="Student Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select id="dynamicCourse">
+                        </select>
+                </div>
+                <textarea rows="5" placeholder="Academic History & Statement of Purpose"></textarea>
+                <button type="submit" id="submitBtn" class="btn-submit">Submit Official Application</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AD Group of Institutions. Shaping Global Leaders.</p>
+    </footer>
+
+    <script>
+        function startApply(college, color) {
+            const area = document.getElementById('admission');
+            area.style.display = 'block';
+            
+            document.getElementById('formTitle').innerText = college + " Official Admission";
+            document.getElementById('formTitle').style.color = color;
+            document.getElementById('submitBtn').style.background = color;
+
+            const selector = document.getElementById('dynamicCourse');
+            selector.innerHTML = "";
+            let courses = college === 'Technology' ? ['B.Tech Computer Science', 'B.Tech Robotics', 'B.Tech IT'] : 
+                          college === 'Arts & Science' ? ['B.Sc Physics', 'BA Fine Arts', 'B.Com Professional'] : 
+                          ['PhD Data Science', 'PhD Quantum Physics', 'PhD Literature'];
+            
+            courses.forEach(c => {
+                let op = document.createElement('option');
+                op.value = c; op.innerText = c;
+                selector.appendChild(op);
+            });
+
+            area.scrollIntoView();
+        }
+
+        document.getElementById('masterForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert("Your official application has been submitted to the AD Admissions Board. You will receive an email shortly.");
+        };
+    </script>
+</body>
+</html
