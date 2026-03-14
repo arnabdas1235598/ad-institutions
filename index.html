@@ -3,247 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD Institutions | Global Master Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>AD Institutions | Future-Ready Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a365d; --accent: #3182ce; --bg: #f7fafc;
+            --primary: #00d2ff;
+            --accent: #9d50bb;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --neon: #00f2ff;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #2d3748; }
 
-        /* Navigation */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: radial-gradient(circle at top right, #1a1c2c, #0a0b10);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1;
+            z-index: -1;
+        }
+
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1.2rem 8%; background: #fff; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 8%; background: rgba(10, 11, 16, 0.8);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
-        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary); letter-spacing: 1px; }
-        .logo span { color: var(--accent); }
 
-        /* Hero */
+        .logo { 
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800; font-size: 1.5rem; color: #fff; 
+            letter-spacing: 2px; text-shadow: 0 0 10px var(--neon);
+        }
+
         .hero {
-            height: 55vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+            background-size: cover; background-attachment: fixed;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
         }
 
-        /* College Selector */
+        .hero h1 { 
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem; 
+            background: linear-gradient(to right, #00d2ff, #9d50bb);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stats-bar { display: flex; justify-content: center; gap: 50px; margin-top: 30px; }
+        .stat-box { text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 700; color: var(--neon); display: block; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; opacity: 0.7; }
+
         .selector-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; padding: 0 8%; margin-top: -50px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; padding: 0 8%; margin-top: -60px;
         }
+
         .college-card {
-            background: #fff; padding: 35px; border-radius: 15px; text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); cursor: pointer; transition: 0.4s;
-            border-top: 6px solid var(--accent);
-        }
-        .college-card:hover { transform: translateY(-12px); border-top-color: #2c5282; }
-
-        /* 20-Image Gallery */
-        .gallery-section { padding: 80px 8%; }
-        .gallery-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 700; }
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;
-        }
-        .img-box {
-            position: relative; height: 260px; border-radius: 12px; overflow: hidden;
-            background: #cbd5e0; /* Gray placeholder while loading */
-        }
-        .img-box img {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.6s;
-        }
-        .img-box:hover img { transform: scale(1.15); }
-        .label {
-            position: absolute; bottom: 0; width: 100%; padding: 12px;
-            background: rgba(26, 54, 93, 0.9); color: #fff; font-size: 0.9rem; text-align: center;
-            font-weight: 600;
+            background: var(--glass); backdrop-filter: blur(20px);
+            padding: 40px; border-radius: 20px; text-align: center;
+            border: 1px solid var(--border); transition: 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            cursor: pointer;
         }
 
-        /* Form */
-        .admission-area { padding: 80px 8%; background: #ebf4ff; display: none; }
-        .form-card {
-            max-width: 850px; margin: 0 auto; background: #fff; padding: 45px;
-            border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        .college-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--neon);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
         }
-        .form-title { margin-bottom: 30px; text-align: center; color: var(--primary); }
-        input, select, textarea {
-            width: 100%; padding: 14px; margin-bottom: 18px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit;
-        }
-        .btn-submit {
-            width: 100%; padding: 18px; background: var(--primary); color: #fff;
-            border: none; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
-        }
-        .btn-submit:hover { background: #2c5282; }
 
-        footer { background: var(--primary); color: #fff; padding: 50px; text-align: center; }
+        .gallery-section { padding: 100px 8%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .img-box { position: relative; height: 300px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: grayscale(40%); }
+        .img-box:hover img { transform: scale(1.1); filter: grayscale(0%); }
+        .label { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: #fff; font-size: 1rem; font-weight: 600; }
+
+        .admission-area { padding: 100px 8%; display: none; background: #0a0b10; }
+        .form-card { max-width: 800px; margin: 0 auto; background: var(--glass); padding: 50px; border-radius: 30px; border: 1px solid var(--border); backdrop-filter: blur(30px); }
+
+        .contact-container { display: flex; max-width: 1200px; margin: 100px auto; padding: 0 8%; gap: 50px; }
+        .contact-left { flex: 1; background: var(--glass); backdrop-filter: blur(20px); padding: 50px; border-radius: 20px; border: 1px solid var(--border); }
+        .contact-left-title h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; background: linear-gradient(to right, #00d2ff, #9d50bb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .contact-left-title hr { border: none; height: 4px; width: 60px; background: linear-gradient(to right, #00d2ff, #9d50bb); margin-bottom: 20px; }
+
+        input, select, textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; padding: 15px; margin-bottom: 20px; border-radius: 10px; width: 100%; }
+        input:focus { outline: none; border-color: var(--neon); box-shadow: 0 0 10px var(--neon); }
+
+        .btn-submit { width: 100%; padding: 20px; background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-submit:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary); }
+
+        .contact-right { flex: 1; background: linear-gradient(135deg, #00d2ff, #9d50bb); border-radius: 20px; display: flex; align-items: center; justify-content: center; padding: 50px; }
+        footer { padding: 60px; border-top: 1px solid var(--border); text-align: center; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">AD <span>INSTITUTIONS</span></div>
-        <div style="font-weight: 600; color: #718096;">Global Excellence</div>
+        <div class="logo">AD <span>CORE</span></div>
+        <div style="font-size: 0.8rem; color: var(--neon);">SYSTEM STATUS: OPTIMIZED</div>
     </nav>
 
     <header class="hero">
-        <div>
-            <h1 style="font-size: 3rem; margin-bottom: 15px;">A Legacy of Learning</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9;">20+ World-Class Facilities across 3 Specialized Colleges</p>
+        <h1>THE ACADEMY OF TOMORROW</h1>
+        <p>Global Learning Infrastructure Enabled</p>
+        <div class="stats-bar">
+            <div class="stat-box">
+                <span class="stat-num" id="count-apps">0</span>
+                <span class="stat-label">Active Applicants</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num" id="count-seats">500</span>
+                <span class="stat-label">Available Slots</span>
+            </div>
         </div>
     </header>
 
     <section class="selector-grid">
-        <div class="college-card" onclick="startApply('Technology', '#3182ce')">
-            <h2>AD Technology</h2>
-            <p>Next-Gen Engineering</p>
+        <div class="college-card" onclick="startApply('Technology', '#00f2ff')">
+            <h2 style="font-family: 'Orbitron';">ENGINEERING</h2>
+            <p>Silicon & Circuits</p>
         </div>
-        <div class="college-card" onclick="startApply('Arts & Science', '#805ad5')">
-            <h2>AD Arts & Science</h2>
-            <p>Creative Innovation</p>
+        <div class="college-card" onclick="startApply('Arts & Science', '#9d50bb')">
+            <h2 style="font-family: 'Orbitron';">HUMANITIES</h2>
+            <p>Creative Neural Networks</p>
         </div>
         <div class="college-card" onclick="startApply('PhD School', '#38a169')">
-            <h2>AD Research</h2>
-            <p>Post-Graduate Excellence</p>
+            <h2 style="font-family: 'Orbitron';">RESEARCH</h2>
+            <p>Advanced Deep Learning</p>
         </div>
     </section>
 
     <section class="gallery-section">
-        <h2 class="gallery-title">Explore Our Facilities</h2>
+        <h2 style="text-align:center; font-family: 'Orbitron'; margin-bottom: 50px;">FACILITY SCAN</h2>
         <div class="gallery-grid">
             <div class="img-box">
-                <img src="https://images.pexels.com/photos/271815/pexels-photo-271815.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Auditorium">
-                <div class="label">Grand Auditorium</div>
+                <img src="https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lab">
+                <div class="label">Quantum Computing Lab</div>
             </div>
             <div class="img-box">
                 <img src="https://images.pexels.com/photos/256417/pexels-photo-256417.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Library">
-                <div class="label">Central Library</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Computer Lab">
-                <div class="label">IT & AI Lab</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/159515/football-american-football-runner-player-159515.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Playground">
-                <div class="label">Sports Playground</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chemistry">
-                <div class="label">Chemistry Research Lab</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/60582/newton-s-cradle-balls-sphere-action-60582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Physics">
-                <div class="label">Physics Lab</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Music">
-                <div class="label">Music & Sound Studio</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/1701202/pexels-photo-1701202.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dance">
-                <div class="label">Dance & Performing Arts</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cafeteria">
-                <div class="label">Modern Cafeteria</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/1263349/pexels-photo-1263349.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pool">
-                <div class="label">Olympic Swimming Pool</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gym">
-                <div class="label">Fitness Center</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Medical">
-                <div class="label">Health & Medical Center</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Seminar">
-                <div class="label">Seminar & Conference Hall</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Art">
-                <div class="label">Fine Arts Studio</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Robotics">
-                <div class="label">Robotics & Drone Lab</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Yoga">
-                <div class="label">Yoga & Wellness Center</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Workshop">
-                <div class="label">Mechanical Workshop</div>
-            </div>
-                       <div class="img-box">
-                <img src="https://images.pexels.com/photos/4348440/pexels-photo-4348440.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Theater">
-                <div class="label">Open Air Theater</div>
-            </div>
-            <div class="img-box">
-                <img src="https://images.pexels.com/photos/1015568/pexels-photo-1015568.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lounge">
-                <div class="label">Creative Student Lounge</div>
+                <div class="label">Digital Archive</div>
             </div>
         </div>
     </section>
 
     <section class="admission-area" id="admission">
         <div class="form-card">
-            <h2 id="formTitle" class="form-title">Admission Portal</h2>
+            <h2 id="formTitle" style="font-family: 'Orbitron'; margin-bottom: 30px; text-align: center;">INITIATE ENROLLMENT</h2>
             <form id="masterForm">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="text" placeholder="Student Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
+                <input type="hidden" name="access_key" value="70f8b36a-aa9a-473f-b298-c442b7670ce4">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input name="name" type="text" placeholder="Access Name" required>
+                    <input name="email" type="email" placeholder="Neural Mail" required>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="tel" placeholder="Phone Number" required>
-                    <select id="dynamicCourse">
-                        </select>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input name="phone" type="tel" placeholder="Comm Channel" required>
+                    <select name="course" id="dynamicCourse"></select>
                 </div>
-                <textarea rows="5" placeholder="Academic History & Statement of Purpose"></textarea>
-                <button type="submit" id="submitBtn" class="btn-submit">Submit Official Application</button>
+                <textarea name="message" rows="4" placeholder="Brief Academic Log..."></textarea>
+                <button type="submit" id="submitBtn" class="btn-submit">UPLOAD APPLICATION</button>
             </form>
         </div>
     </section>
 
+    <div class="contact-container">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+            <div class="contact-left-title">
+                <h2>Get in touch</h2>
+                <hr>
+            </div>
+            <input type="hidden" name="access_key" value="70f8b36a-aa9a-473f-b298-c442b7670ce4">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-submit">Submit →</button>
+        </form>
+        <div class="contact-right">
+            <h2 style="font-family: 'Orbitron'; color: white;">AD SYSTEMS</h2>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 AD Group of Institutions. Shaping Global Leaders.</p>
+        <p>&copy; 2026 AD GLOBAL CORE. SYSTEM VERSION 4.0.2</p>
     </footer>
 
-   <script>
-        // 1. PUT YOUR GOOGLE LINK HERE
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz8UeSN1afrm9jLrtH-dhz3y4V1HzIZdcadbtrHEsQxBEjVnv0SQmL0dDTay-PcSHxNIg/exec'; 
+    <script>
+        // Animations
+        function animateCounter(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let current = start;
+            let step = Math.ceil((end - start) / (duration / 50));
+            let timer = setInterval(() => {
+                current += step;
+                if (current >= end) { obj.innerText = end; clearInterval(timer); } 
+                else { obj.innerText = current; }
+            }, 50);
+        }
+
+        window.onload = () => {
+            animateCounter("count-apps", 0, 1420, 2000);
+            animateCounter("count-seats", 500, 84, 2000);
+        };
 
         function startApply(college, color) {
-            document.getElementById('admission').style.display = 'block';
-            document.getElementById('formTitle').innerText = college + " Admission";
+            const area = document.getElementById('admission');
+            area.style.display = 'block';
+            document.getElementById('formTitle').innerText = "ENROLL IN " + college.toUpperCase();
             document.getElementById('formTitle').style.color = color;
-            document.getElementById('submitBtn').style.background = color;
+            document.getElementById('submitBtn').style.background = `linear-gradient(45deg, ${color}, #000)`;
             
             const sel = document.getElementById('dynamicCourse');
             sel.innerHTML = "";
-            let courses = college === 'Technology' ? ['B.Tech CS', 'B.Tech IT'] : ['B.Sc', 'B.Com'];
+            let courses = college === 'Technology' ? ['B.Tech IT', 'B.Tech AI'] : ['B.Sc Data Science', 'B.Com Digital'];
             courses.forEach(c => { sel.innerHTML += `<option value="${c}">${c}</option>`; });
-            document.getElementById('admission').scrollIntoView();
+            window.scrollTo({ top: area.offsetTop - 100, behavior: 'smooth' });
         }
 
-        // 2. THIS SENDS DATA TO GOOGLE DRIVE
+        // FIXED JAVASCRIPT FOR WEB3FORMS
         const form = document.getElementById('masterForm');
-        form.addEventListener('submit', e => {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            document.getElementById('submitBtn').innerText = "Saving...";
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(res => {
-                alert("Success! Details saved to Drive.");
-                form.reset();
-                document.getElementById('submitBtn').innerText = "Submit to Google Drive";
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "UPLOADING TO CORE...";
+            
+            const formData = new FormData(form);
+            
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
             })
-            .catch(err => alert("Error: " + err.message));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("APPLICATION SYNCED SUCCESSFULLY!");
+                    form.reset();
+                } else {
+                    alert("Error: " + data.message);
+                }
+                btn.innerText = "UPLOAD APPLICATION";
+            })
+            .catch(error => {
+                alert("NETWORK ERROR. PLEASE TRY AGAIN.");
+                btn.innerText = "UPLOAD APPLICATION";
+            });
         });
     </script>
 </body>
